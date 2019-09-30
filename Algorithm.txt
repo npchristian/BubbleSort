@@ -1,0 +1,68 @@
+Algorithm for the Driver.cpp (Sorting) Assignment6
+
+1. Create a class called Sort which will include
+	a. A protected pointer to an integer array called 'point'
+	b. An empty constructor / deconstructor
+	c. A pure virtual object called " Sorter "
+2. Create a class called Bubble which will inherit from Sort and will include
+	a. A constructor that accepts an integer array as anargument and points 'point' to each element in that array
+	b. A destructor
+	c. defines the pure virtual 'Sorter' function inherited from Sort by:
+		i. creating integers called count, count2, and temp
+		ii. creating a boolean called isSorted and setting equal to 'false'
+		iii. create a for loop from 0 (using count) incrementing it to the number of total integers needing sorted, inside the loop:
+			1. set isSorted equal to true
+			2. create another for loop (nexted loop) from 0 to the number of integers needing sorted (using count2), inside the loop:
+				a. create an if statement, If point(count2+1) > point(count2):
+					i. temporarily store point[count2] in the temp integer
+					ii. set point[count2] equal to point[count2+1]
+					iii. set point[count2+1] equal to temp (this effectively swaps the two integers)
+					iv. Set isSorted equal to true and end If statement and both loops
+		iv. Print the sorted array to screen
+3. Create a class called Insert which will inherit from Sort and will include:
+	a. A constructor that accepts an integer array as anargument and points 'point' to each element in that array
+	b. A destructor
+	c. defines the pure virtual 'sorter' function inherited from sort by:
+		i. creating integers called count, count2, and temp
+		ii. Creating a for loop from 0 to the number of integers (using count), inside that loop 
+			1. set count2 equal to count
+			2. create a while loop nested within the for loop with the conditions of (count2 > 0 && point[count2-1] < point[count2]) inside the loop:
+				a. copy the contents of point[count2] into the temp integer
+				b. set point[count2] = point[count2-1]
+				c. set point[count2-1]= temp (This effectively swaps the integers)
+				d. decrement count2 by one (1). 
+				e. end the while loop and end the for loop
+		iii. print the sorted array.
+4. In main:
+	a. define the size (number of integer) to be sorted and store in a variable called size or SIZE
+	b. create integers called count, choice, choice2, and loopTrack
+	c. create an integer array called intArray and backup both will have an array size of SIZE (number of integers)
+	d. set choice, choice2, and looptrack equal to 0
+	e. create a character variable called 'trash' to store the commas while parsing
+	f. create a string called tempString 
+	g. create a string stream called mySS
+	h. create pointers to the Bubble and Insert objects
+	i. Create a while loop that terminates if choice is equal to 2 or choice2 is equal to 3 inside that loop:
+		i. create a nested while loop that:
+			1. prints the menu choices for the user and doesn't allow invalid entries
+				a. option 1 load data
+				b. option 2 exit
+			2. gets the users decision and stores it in 'choice'
+		ii. create an if statement (if loopTrack = 0): (this means if we are on our first iteration) do the following:
+			i. read the file with the integers and store into tempString
+			ii. Parse tempString using mySS and store the commas in 'trash'
+			iii. store the integers in the integer array intArray
+			iv. copy IntArray to backup to avoid reloading the file when a new sorting method is used.
+		iii. Create an else that copies the contents of the backup back into the intArray (reset the sort back to it's original order)
+		iv. If choice does not equal to (meaning user has not chosen to exit) print the unsorted array stored in backup and reset the values of choice and choice2 to 0
+		v. increment looopTrack so we keep track of whether we have already read the file. 
+		vi. create another while loop nested within the first one that runs so long as choice is not equal to 2 (exit) and as long as user has not selected an appropriate menu option (1, 2, or 3)
+			i. print the menu options (insert sort, bubble sort, or exit)
+			ii. in a switch statement, do the following:
+				1. If 1 create a new insertion object (pointer), call the sorter function, and free the memory
+				2. if 2. create a new Bubble object (pointer) call the sorter function and free the memory
+				3 if 3. do nothing and allow the loop to terminates
+	j. Print the thank you message and terminate.
+	
+		
+				
